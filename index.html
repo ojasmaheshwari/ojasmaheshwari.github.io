@@ -18,7 +18,7 @@
       </h1>
       <div class="sm:relative sm:w-72 flex justify-center items-center gap-2">
         <input class="outline-none border-none sm:absolute focus:outline-none rounded-sm border border-black w-32 sm:w-52 self-center
-      p-1 sm:px-2 h-5 text-sm sm:h-7 sm:focus:w-56 sm:transition-width sm:duration-500 sm:ease-in-out
+      p-1 sm:px-2 h-5 text-sm sm:h-7 sm:focus:w-56 sm:transition-width sm:duration-250 sm:ease-in-out
       " type="search" name="query" id="search-btn"
       placeholder="Search the site">
         <button class="inline-flex items-center sm:absolute sm:right-0">
@@ -107,21 +107,10 @@
       if (hamburgerState === 'closed') {
         dropdownContent.classList.replace('opacity-0', 'opacity-100')
         hamburger.setAttribute('hamburgerState', 'opened')
-
-        // Now to push <main> downwards
-        // setTimeout(() => {
-        //   ddContentHeight = dropdownContent.offsetHeight + 'px'
-        //   mainTag.style.marginTop = ddContentHeight
-        // }, 100)
       }
       else if (hamburgerState === 'opened') {
         dropdownContent.classList.replace('opacity-100', 'opacity-0')
         hamburger.setAttribute('hamburgerState', 'closed')
-
-        // Reset the <main> to 0 when navbar closes
-        // setTimeout(() => {
-        //   mainTag.style.marginTop = 0
-        // }, 100)
       } else {
         console.log('Invalid hamburger state.')
       }
