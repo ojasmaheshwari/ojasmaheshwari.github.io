@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/thapacodefest/static/css/main.db59088d.css",
+    "main.js": "/thapacodefest/static/js/main.8c36f2b5.js",
+    "index.html": "/thapacodefest/index.html",
+    "main.db59088d.css.map": "/thapacodefest/static/css/main.db59088d.css.map",
+    "main.8c36f2b5.js.map": "/thapacodefest/static/js/main.8c36f2b5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db59088d.css",
+    "static/js/main.8c36f2b5.js"
+  ]
+}
