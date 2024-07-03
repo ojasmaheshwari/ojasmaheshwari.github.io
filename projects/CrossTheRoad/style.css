@@ -1,0 +1,26 @@
+*, *::before, *::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: black;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+canvas {
+	/* background-color: #635b5a; */
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQejMtjjZu0pEa-r-_vhrKFpovkkV9mnEbqbA&s');
+	border: 2px solid black;
+}
+
+h1 {
+	padding-top: .5rem;
+}
