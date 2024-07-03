@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ojas Editor Online</title>
+  <script type="module" crossorigin src="/editor/assets/index-CF9U6pEm.js"></script>
+  <link rel="stylesheet" crossorigin href="/editor/assets/index-IVdqrjBA.css">
+</head>
+
+<body>
+  <div class="header">
+    <header>
+      <h1>🔥 (OjasEditor)<sup>online</sup> 🚀</h1>
+    </header>
+    <div class="tab">
+      <button id="run-button">Run</button>
+      <div class="lang-selector">
+        <label for="lang-selector" id="label-lang">Select language: </label>
+        <select name="language" id="lang-selector">
+          <option value="c">C</option>
+          <option value="cpp">C++</option>
+          <option value="java">Java</option>
+          <option value="javascript">Javascript</option>
+          <option value="php">PHP</option>
+          <option value="python">Python</option>
+          <option value="typescript">Typescript</option>
+        </select>
+      </div>
+      <div class="theme">
+        <button id="switch-theme">Change theme</button>
+      </div>
+      <div class="clear-output">
+        <button id="clear-output">Clear output</button>
+      </div>
+      <div class="copy-code">
+        <button id="copy-button">Copy 🗒️</button>
+      </div>
+      <div class="mode">
+        <select name="mode" id="mode">
+          <option value="normal">Normal mode</option>
+          <option value="vim">Vim mode</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="editor-pane">
+      <div id="editor" class="no-invert"></div>
+      <div id="status-bar"></div>
+    </div>
+    <div class="execution-pane">
+      <div class="output-pane">
+        coderunner@ojaseditor>
+      </div>
+      <div class="input-pane">
+        <textarea class="input" name="input" placeholder="Enter input here" spellcheck="false"></textarea>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
