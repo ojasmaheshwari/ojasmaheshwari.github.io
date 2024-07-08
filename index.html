@@ -2,13 +2,142 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>EPIC</title>
-	  <h1>Hey ojas here, please move to <a href="https://ojasmaheshwari.netlify.app">My new website</a>.</h1>
-	  <h2>This website previously contained links to my top projects. This website was lost because of a deployment issue with my other project. In meantime, please refer to the above website (In construction) and my <a href="https://github.com/ojasmaheshwari?tab=repositories">github</a> projects I've built in past.</h2>
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+		<div class="mob-only-top">
+    <span id="mobile-only-nav-logo"><span class="lead">O</span>jas.</span>
+		<div class="mob-only-hamburger" id="hamburger-btn">
+			<img src="./images/hamburger_icon.svg" alt="">
+		</div>
+		</div>
+    <nav id="navbar">
+      <span id="nav-logo"><span class="lead">O</span>jas.</span>
+      <ul>
+				<li><a href="javascript:void(0)" class="mob-only-nav-close-btn" id="nav-close">&times;</a></li>
+        <li><a href="#" class="active-link">Home</a></li>
+        <li><a href="#about-me">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div class="home-section">
+        <div id="main-content-left">
+          <h2>
+            <span class="lead"><</span>Programmer<span class="lead"> /></span>
+          </h2>
+          <h1>Hi, I'm <span class="lead">Ojas</span></h1>
+          <h1>And I am a <span id="typewrite">C++ Developer</span></h1>
+        </div>
+        <div id="image_right_centered"></div>
+        <div class="arrow-down">
+          <img src="./images/downarrow_icon.svg" alt="" />
+        </div>
+      </div>
+      <div class="about-section" id="about-me">
+        <div class="about-img-left">
+          <img src="./images/about_img.jpg" alt="" />
+        </div>
+        <div class="about-content-right">
+          <h1>About Me</h1>
+          <p>
+            Hello, I am an 18 year old programmer from India. I like building
+            web applications as well as good-looking websites. I am experienced
+            in HTML, CSS, JS, PHP, Java, C++ and x86 assembly.
+          </p>
+          <div class="about-nav">
+            <ul>
+              <li>
+                <a
+                  href="#about-me"
+                  onclick="updateAboutNav('Skills')"
+									id="link-Skills"
+									class="prevent-default"
+                  >Skills</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about-me"
+                  onclick="updateAboutNav('Experience')"
+                  id="link-Experience"
+									class="prevent-default"
+                  >Experience</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about-me"
+                  onclick="updateAboutNav('Education')"
+                  id="link-Education"
+									class="prevent-default"
+                  >Education</a
+                >
+              </li>
+            </ul>
+            <div class="about-nav-content"></div>
+          </div>
+        </div>
+      </div>
+      <div class="services-section" id="services">
+        <h1>My Services</h1>
+        <div class="services-wrapper"></div>
+      </div>
+      <div class="portfolio-section" id="portfolio">
+        <h1>My Work</h1>
+        <div class="portfolio-wrapper"></div>
+        <div class="btn-wrapper">
+          <button>See more</button>
+        </div>
+      </div>
+      <div class="contact-section" id="contact">
+        <div class="contact_section-left">
+          <h1>Contact Me</h1>
+          <div class="social-links">
+            <div class="social-link">
+              <img src="./images/paper_plane_icon.svg" alt="" />
+              workonlyojas@gmail.com
+            </div>
+            <div class="social-link">
+              <img src="./images/discord_icon.svg" alt="" />
+              https://discord.gg/7nx7MDR9
+            </div>
+          </div>
+          <div class="icon-only-links">
+            <a href="https://www.instagram.com/0jasmaheshwari/" target="_blank">
+              <img src="./images/instagram_icon.svg" alt="" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ojas-maheshwari-04101630b/"
+              target="_blank"
+            >
+              <img src="./images/linkedin_icon.svg" alt="" />
+            </a>
+            <a href="https://x.com/ojasmwari" target="_blank">
+              <img src="./images/twitter_icon.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="contact_section-right">
+          <form action="">
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email Address" />
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              placeholder="Your message"
+            ></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
