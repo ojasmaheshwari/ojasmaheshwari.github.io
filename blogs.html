@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blogs</title>
+
+	<style>
+		body {
+			max-width: 800px;
+			margin: 40px auto;
+			padding: 0 16px;
+			font-family: sans-serif;
+			line-height: 1.6;
+		}
+
+		h1 {
+			margin-bottom: 32px;
+		}
+
+		.post {
+			margin-bottom: 48px;
+		}
+
+		.post h2 {
+			margin-bottom: 8px;
+		}
+
+		.meta {
+			margin-bottom: 12px;
+		}
+
+		p {
+			margin: 0 0 12px 0;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<h1>Blogs</h1>
+
+	<div id="posts"></div>
+
+	<script>
+		async function loadPosts() {
+			try {
+				const response = await fetch("/posts.json");
+
+				if (!response.ok) {
+					throw new Error("Failed to fetch posts.json");
+				}
+
+				const posts = await response.json();
+
+				posts.reverse();
+
+				const postsContainer = document.getElementById("posts");
+
+				for (const post of posts) {
+					const article = document.createElement("article");
+					article.className = "post";
+
+					article.innerHTML = `
+						<h2>
+							<a href="${post.postLink}">
+								${post.title}
+							</a>
+						</h2>
+
+						<div class="meta">
+							${post.date} • ${post.author}
+						</div>
+
+						<p>${post.description}</p>
+					`;
+
+					postsContainer.appendChild(article);
+				}
+			}
+			catch (error) {
+				console.error(error);
+
+				document.getElementById("posts").innerHTML =
+					"<p>Failed to load blog posts.</p>";
+			}
+		}
+
+		loadPosts();
+	</script>
+
+</body>
+
+</html>

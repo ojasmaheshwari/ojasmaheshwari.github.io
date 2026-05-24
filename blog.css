@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	width: fit-content;
+	margin: auto;
+}
+
+nav>ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: 1rem;
+}
+
+nav>ul>li {
+	list-style-type: none;
+}
