@@ -5,5 +5,12 @@
         "description": "Hi, I am Ojas Maheshwari. This is an introduction post/blog so that I know the site works correctly!",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/introductory-blog",
         "title": "Introductory Blog"
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "04 June, 2026",
+        "description": "This blog is about sharing whatever work I did and completed in the community bonding period and week 1 of my GSoC at KDE Community.",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/community-bonding-week-1-status-update-gsoc-26",
+        "title": "Community Bonding + Week 1 Status Update | GSoC '26"
     }
 ]
