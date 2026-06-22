@@ -12,5 +12,12 @@
         "description": "This blog is about sharing whatever work I did and completed in the community bonding period and week 1 of my GSoC at KDE Community.",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/community-bonding-week-1-status-update-gsoc-26",
         "title": "Community Bonding + Week 1 Status Update | GSoC '26"
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "22 June, 2026",
+        "description": "This blog covers progess and work done in week 2 and week 3 of my GSoC project about Font Subsetting in Poppler.",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/week-2-week-3-dangling-pointer-bugs-silly-mistakes-and-a-lot-of-cmake",
+        "title": "Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake"
     }
 ]
