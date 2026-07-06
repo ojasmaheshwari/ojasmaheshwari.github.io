@@ -1,22 +1,40 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	width: fit-content;
-	margin: auto;
-	padding: 0 2rem;
+    width: 100%;
+    margin: auto;
+    padding: 0 2rem;
+}
+
+main {
+    width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 nav>ul {
-	margin: 0;
-	padding: 0;
-	display: flex;
-	gap: 1rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
 }
 
 nav>ul>li {
-	list-style-type: none;
+    list-style-type: none;
+}
+
+#disqus_thread {
+    margin-top: 2rem;
+}
+
+code {
+    background-color: #353835;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 5px;
 }

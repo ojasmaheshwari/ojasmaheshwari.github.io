@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This blog is about the progress made in week 4 and week 5 of my GSoC contribution journey.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Week 4 + Week 5 GSoC update | Almost had a heart attack</title>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Week 4 + Week 5 GSoC update | Almost had a heart attack</h1>
+        <i>07 July, 2026</i>
+        <p>Ok, the title is <strong>slightly</strong> click-baity but hear me out.</p>
+<p>So nearly 2 weeks ago, after writing a lot of code for making the font subsetting work for annotations, I found a flaw in my approach.</p>
+<p>I was never deleting the old original font after embedding it's subset version.</p>
+<p>So what happened is that:</p>
+<ul>
+<li>Suppose a user creates a new annotation in an empty PDF.</li>
+<li>The subsetted font gets embedded and used in the PDF.</li>
+<li>But the original font stays there, taking space.</li>
+</ul>
+<p>This is actually slightly worse than when we had no subsetting at all.</p>
+<p>So the solution should just be to delete the original font right? <em>Nope</em></p>
+<p>If we simply delete the original font, it would create the following problem:</p>
+<ul>
+<li>Suppose a PDF with two annotations pointing / using the same font.</li>
+<li>User edits the 1st annotation.</li>
+<li>1st annotation uses the subset font, and the old font gets deleted from the PDF.</li>
+<li>The 2nd annotation is rendered useless.</li>
+</ul>
+<p>When I realized this, I thought I would need to completely change how I do subsetting, and almost all the code I had written will go to waste.</p>
+<p>My new idea was to never let the full version of a font to exist inside the PDF. What I mean is subsetting immediately when the font is loaded from the disk and is about to be embedded as a <code>Font</code> object.</p>
+<p>But I had a meeting with my mentor Albert Astals Cid  yesterday, and we decided to settle on a simpler approach.
+We can simply detect if the font we want to delete is:- <em>a font we added ourselves</em> or <em>a pre-existing font</em> inside the PDF.</p>
+<p>If we added it ourselves, we can safely remove it. Otherwise, let it stay there as it might be in use by other annotations.</p>
+<p>I implemented it today, and we have working font subsetting for freetext annotations right now (not merged).<br>
+https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220</p>
+<h2>A simple size experiment</h2>
+<p>Here's a simple experiment which demonstrates the impact of font subsetting on PDF file size:</p>
+<p>Original file size: 105820 bytes = 105.82 KB</p>
+<p>After adding an annotation with content &quot;hello world&quot;:</p>
+<p>Poppler <strong>without</strong> font subsetting: 504699 bytes = 504.699 KB</p>
+<p>Poppler <strong>with</strong> font subsetting: 145806 bytes = 145.806 KB</p>
+<p>That's like a 500% improvement...</p>
+<h2>What's next</h2>
+<ul>
+<li>Right now, I only do the subsetting for ttf/otf fonts and not for ttc fonts. I need to do that.</li>
+<li>I need to make the subsetting work for forms as well.</li>
+</ul>
+<h2>Thank You</h2>
+<p>Good Night!</p>
+
+    </main>
+
+    <hr>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "https://ojasmaheshwari.github.io/b/2026/week-4-week-5-gsoc-update-almost-had-a-heart-attack";
+            this.page.identifier = "week-4-week-5-gsoc-update-almost-had-a-heart-attack";
+        };
+
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://ojasmaheshwari.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+</body>
+
+</html>

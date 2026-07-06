@@ -19,5 +19,12 @@
         "description": "This blog covers progess and work done in week 2 and week 3 of my GSoC project about Font Subsetting in Poppler.",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/week-2-week-3-dangling-pointer-bugs-silly-mistakes-and-a-lot-of-cmake",
         "title": "Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake"
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "07 July, 2026",
+        "description": "This blog is about the progress made in week 4 and week 5 of my GSoC contribution journey.",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/week-4-week-5-gsoc-update-almost-had-a-heart-attack",
+        "title": "Week 4 + Week 5 GSoC update | Almost had a heart attack"
     }
 ]
