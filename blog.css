@@ -1,34 +1,10 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-body {
-    width: 100%;
-    margin: auto;
-    padding: 0 2rem;
-}
+@import url("global_config.css");
+@import url("navbar.css");
+@import url("disqus.css");
 
 main {
-    width: 80%;
     margin-top: 2rem;
     margin-bottom: 2rem;
-}
-
-nav>ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-}
-
-nav>ul>li {
-    list-style-type: none;
-}
-
-#disqus_thread {
-    margin-top: 2rem;
 }
 
 code {

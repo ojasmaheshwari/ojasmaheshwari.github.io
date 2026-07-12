@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --col-text-light: black;
+    --col-text-dark: white;
+
+    --col-bg-light: white;
+    --col-bg-dark: black;
+
+    --col-text: var(--col-text-light);
+    --col-bg: var(--col-bg-light);
+}
+
+body {
+    width: fit-content;
+    margin: auto;
+    font-family: sans-serif;
+    padding: 0 1rem;
+    color: var(--col-text) !important;
+    background-color: var(--col-bg);
+}

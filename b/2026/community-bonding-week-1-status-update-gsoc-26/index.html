@@ -2,72 +2,95 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="This blog is about sharing whatever work I did and completed in the community bonding period and week 1 of my GSoC at KDE Community.">
-	<link rel="stylesheet" href="/blog.css">
-	<title>Community Bonding + Week 1 Status Update | GSoC '26</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This blog is about sharing whatever work I did and completed in the community bonding period and week 1 of my GSoC at KDE Community.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Community Bonding + Week 1 Status Update | GSoC '26</title>
+    <script defer src="/mode_control.js"></script>
 </head>
 
 <body>
-	<header>
-		<h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
-	</header>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
 
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/blogs.html">Blog</a></li>
-		</ul>
-	</nav>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
 
-	<main>
-		<h1>Community Bonding + Week 1 Status Update | GSoC '26</h1>
-		<i>04 June, 2026</i>
-		<p>Hello Reader!</p>
-<p>In case you don't know me (quite likely 😆), I am Ojas Maheshwari (@the_epicman:matrix.org) and I am currently working in the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> program for the KDE community on a project about Font Subsetting in <a href="https://gitlab.freedesktop.org/poppler/poppler">Poppler</a> under my mentor Albert Astals Cid.</p>
-<h2>Community Bonding</h2>
-<p>If I am being honest, I had already bonded with the Poppler community before GSoC started 😅</p>
-<p>I had a lot of conversations with Albert, Sune, lbaudin and ats, and they already helped me a lot with my technical problems with my contributions prior to GSoC :D</p>
-<p>However, I also managed to bond with other fellow GSoC contributors this summer so it's a win in my book :D</p>
-<h2>Week 1</h2>
-<p>I learnt a lot about how PDF files work this week.</p>
-<p>Technical terms like Indirect Objects, Default Appearance, Appearance Streams which used to sound confusing to me before finally clicked.</p>
-<p>I got more comfortable with traversing and using PDF data structures such as Objects, Arrays, Dicts, Streams etc.</p>
-<p>The Happy News is that I got the Font Subsetting to work for FreeText Annotations.</p>
-<p>I have raised a <a href="https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220">Draft MR</a> which should be ready-to-review by end of this week and my plan is to get it fully correct and merged first and then move on to doing the same thing for forms.</p>
-<p><img src="https://ojasmaheshwari.github.io/assets/blog_week1_ss.png" width="1200" height="auto" alt="A picture of my IDE containing my work"><br>
-<i>Code screenshot to make the blog look cooler</i></p>
-<h2>How it works</h2>
-<p>If you are interested to know what my current approach is:</p>
-<ul>
-<li>
-<p>The whole subsetting runs only when the user saves the document.</p>
-</li>
-<li>
-<p>We go over all resources (for now, just FreeText annotations) that were modified, and call a <code>subsetFonts</code> method on them.</p>
-</li>
-<li>
-<p>This is a method implemented by every class that needs subsetting, and inside this method we pass the data on what &quot;font&quot; renders what part of the &quot;text&quot; to our <code>FontSubsetter::getSubsetFonts</code>.</p>
-</li>
-</ul>
-<pre><code>std::map&lt;Ref, Ref&gt; FontSubsetter::getSubsetFonts(const std::map&lt;std::shared_ptr&lt;const GfxFont&gt;, std::string&gt; &amp;fontMappings) const
+    <main>
+        <h1>Community Bonding + Week 1 Status Update | GSoC '26</h1>
+        <i>04 June, 2026</i>
+        <p>Hello Reader!</p>
+        <p>In case you don't know me (quite likely 😆), I am Ojas Maheshwari (@the_epicman:matrix.org) and I am
+            currently working in the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> program
+            for the KDE community on a project about Font Subsetting in <a
+                href="https://gitlab.freedesktop.org/poppler/poppler">Poppler</a> under my mentor Albert Astals Cid.</p>
+        <h2>Community Bonding</h2>
+        <p>If I am being honest, I had already bonded with the Poppler community before GSoC started 😅</p>
+        <p>I had a lot of conversations with Albert, Sune, lbaudin and ats, and they already helped me a lot with my
+            technical problems with my contributions prior to GSoC :D</p>
+        <p>However, I also managed to bond with other fellow GSoC contributors this summer so it's a win in my book :D
+        </p>
+        <h2>Week 1</h2>
+        <p>I learnt a lot about how PDF files work this week.</p>
+        <p>Technical terms like Indirect Objects, Default Appearance, Appearance Streams which used to sound confusing
+            to me before finally clicked.</p>
+        <p>I got more comfortable with traversing and using PDF data structures such as Objects, Arrays, Dicts, Streams
+            etc.</p>
+        <p>The Happy News is that I got the Font Subsetting to work for FreeText Annotations.</p>
+        <p>I have raised a <a href="https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220">Draft MR</a>
+            which should be ready-to-review by end of this week and my plan is to get it fully correct and merged first
+            and then move on to doing the same thing for forms.</p>
+        <p><img src="https://ojasmaheshwari.github.io/assets/blog_week1_ss.png" width="1200" height="auto"
+                alt="A picture of my IDE containing my work"><br>
+            <i>Code screenshot to make the blog look cooler</i>
+        </p>
+        <h2>How it works</h2>
+        <p>If you are interested to know what my current approach is:</p>
+        <ul>
+            <li>
+                <p>The whole subsetting runs only when the user saves the document.</p>
+            </li>
+            <li>
+                <p>We go over all resources (for now, just FreeText annotations) that were modified, and call a
+                    <code>subsetFonts</code> method on them.</p>
+            </li>
+            <li>
+                <p>This is a method implemented by every class that needs subsetting, and inside this method we pass the
+                    data on what &quot;font&quot; renders what part of the &quot;text&quot; to our
+                    <code>FontSubsetter::getSubsetFonts</code>.</p>
+            </li>
+        </ul>
+        <pre><code>std::map&lt;Ref, Ref&gt; FontSubsetter::getSubsetFonts(const std::map&lt;std::shared_ptr&lt;const GfxFont&gt;, std::string&gt; &amp;fontMappings) const
 </code></pre>
-<ul>
-<li>
-<p>The function generates the subset font objects and adds them to the PDF and returns mappings of old font refs and newer font refs. The subsetting happens using a library called &quot;Harfbuzz&quot;.</p>
-</li>
-<li>
-<p>Then the <code>subsetFonts</code> function simply replaces the older refs with the newer ones inside the font subdictionary of the appearance stream of the annotation.</p>
-</li>
-</ul>
-<h2>Thanks for reading</h2>
-<p>Although this blog might look small, it took me more than 1.5 hours to write this because I kept writing and deleting things. I am hoping I get better at writing blogs in the future.</p>
-<p>But anyways, thanks for reading!<br>
-And have a great day !<br>
-Byee 😃!</p>
+        <ul>
+            <li>
+                <p>The function generates the subset font objects and adds them to the PDF and returns mappings of old
+                    font refs and newer font refs. The subsetting happens using a library called &quot;Harfbuzz&quot;.
+                </p>
+            </li>
+            <li>
+                <p>Then the <code>subsetFonts</code> function simply replaces the older refs with the newer ones inside
+                    the font subdictionary of the appearance stream of the annotation.</p>
+            </li>
+        </ul>
+        <h2>Thanks for reading</h2>
+        <p>Although this blog might look small, it took me more than 1.5 hours to write this because I kept writing and
+            deleting things. I am hoping I get better at writing blogs in the future.</p>
+        <p>But anyways, thanks for reading!<br>
+            And have a great day !<br>
+            Byee 😃!</p>
 
-	</main>
+    </main>
 </body>
 
 </html>

@@ -2,68 +2,76 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blogs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="global_config.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script defer src="/mode_control.js"></script>
 
-	<style>
-		body {
-			max-width: 800px;
-			margin: 40px auto;
-			padding: 0 16px;
-			font-family: sans-serif;
-			line-height: 1.6;
-		}
+    <style>
+        h1 {
+            margin-bottom: 32px;
+        }
 
-		h1 {
-			margin-bottom: 32px;
-		}
+        .post {
+            margin-bottom: 48px;
+        }
 
-		.post {
-			margin-bottom: 48px;
-		}
+        .post h2 {
+            margin-bottom: 8px;
+        }
 
-		.post h2 {
-			margin-bottom: 8px;
-		}
+        .meta {
+            margin-bottom: 12px;
+        }
 
-		.meta {
-			margin-bottom: 12px;
-		}
+        p {
+            margin: 0 0 12px 0;
+        }
 
-		p {
-			margin: 0 0 12px 0;
-		}
-
-	</style>
+    </style>
 </head>
 
 <body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
 
-	<h1>Blogs</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
 
-	<div id="posts"></div>
+    <h1>Blogs</h1>
 
-	<script>
-		async function loadPosts() {
-			try {
-				const response = await fetch("/posts.json");
+    <div id="posts"></div>
 
-				if (!response.ok) {
-					throw new Error("Failed to fetch posts.json");
-				}
+    <script>
+        async function loadPosts() {
+            try {
+                const response = await fetch("/posts.json");
 
-				const posts = await response.json();
+                if (!response.ok) {
+                    throw new Error("Failed to fetch posts.json");
+                }
 
-				posts.reverse();
+                const posts = await response.json();
 
-				const postsContainer = document.getElementById("posts");
+                posts.reverse();
 
-				for (const post of posts) {
-					const article = document.createElement("article");
-					article.className = "post";
+                const postsContainer = document.getElementById("posts");
 
-					article.innerHTML = `
+                for (const post of posts) {
+                    const article = document.createElement("article");
+                    article.className = "post";
+
+                    article.innerHTML = `
 						<h2>
 							<a href="${post.postLink}">
 								${post.title}
@@ -77,19 +85,19 @@
 						<p>${post.description}</p>
 					`;
 
-					postsContainer.appendChild(article);
-				}
-			}
-			catch (error) {
-				console.error(error);
+                    postsContainer.appendChild(article);
+                }
+            }
+            catch (error) {
+                console.error(error);
 
-				document.getElementById("posts").innerHTML =
-					"<p>Failed to load blog posts.</p>";
-			}
-		}
+                document.getElementById("posts").innerHTML =
+                    "<p>Failed to load blog posts.</p>";
+            }
+        }
 
-		loadPosts();
-	</script>
+        loadPosts();
+    </script>
 
 </body>
 

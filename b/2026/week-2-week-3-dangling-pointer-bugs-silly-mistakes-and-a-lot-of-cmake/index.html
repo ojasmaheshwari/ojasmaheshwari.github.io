@@ -2,71 +2,96 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="This blog covers progess and work done in week 2 and week 3 of my GSoC project about Font Subsetting in Poppler.">
-	<link rel="stylesheet" href="/blog.css">
-	<title>Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This blog covers progess and work done in week 2 and week 3 of my GSoC project about Font Subsetting in Poppler.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake</title>
+    <script defer src="/mode_control.js"></script>
 </head>
 
 <body>
-	<header>
-		<h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
-	</header>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
 
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/blogs.html">Blog</a></li>
-		</ul>
-	</nav>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
 
-	<main>
-		<h1>Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake</h1>
-		<i>22 June, 2026</i>
-		<p>Hey wassup guys! Welcome to yet another blog made by me!</p>
-<p>I've been busy for a while due to exam stress and my passport situation.<br>
-But I am glad to share that I finally got the passport yesterday! This brings me one step closer to making it to <strong>Akademy 2026</strong> in Graz, Austria.<br>
-<br>
-Now I just need to get my flight and hotel bookings done, get some required documents signed from my university, get a VISA or a forex card and then finally apply for the Austrian Schengen VISA.<br>
-<br>
-Anyways, this blog is supposed to be about sharing learnings / progress made in week 2 and 3 of my GSoC journey so let's go!
-<br></p>
-<p>If I recall correctly, I did the following in the past 2 weeks:</p>
-<h3>Work on some CI issues in the android image and the windows MinGW image.</h3>
-<ul>
-<li>I had to build harfbuzz from scratch for the android image because it simply didn't have it by default.</li>
-<li>For the windows image, I actually found a bug in harfbuzz which made the windows build fail. I filed an issue and they fixed it very quickly by using AI https://github.com/harfbuzz/harfbuzz/issues/6026. I don't really like it myself that harfbuzz is heavily using AI in its development but I think I can't really do much about it. Perhaps this is a topic worth covering in another blog?</li>
-</ul>
-<h3>Destroying resources after we have no use for them.</h3>
-<ul>
-<li>I was leaking some memory by using harfbuzz to generate subset fonts but was never really calling the destroy functions required to free that memory.</li>
-</ul>
-<h3>Fix a dangling pointer bug that caused invalid fonts on subsetting.</h3>
-<ul>
-<li>I unknowingly made a serious <i>dangling pointer</i> or <i>use after free</i> bug when I was working on destroying harfbuzz resources after I had used them. The gist here was that I used a class called <code>MemStream</code> but didn't realize that it actually had a read-only view on my  subset font data, let's say <code>const char* fontData</code>. I called harfbuzz destroy function after constructing this stream and it freed the <code>fontData</code> and then when the time came for writing to the file, the <code>fontData</code> pointer inside the stream was dangling and corrupted data got written.</li>
-</ul>
-<h3>Making font subsetting an optional feature</h3>
-<ul>
-<li>I reported the harfbuzz issue and the patch MR got merged so does that mean the windows CI would also get fixed immediately? Not quite, the harfbuzz people would first need to <i>release a release</i> and then it needs to be updated in the package repository to finally get the patch working. We aren't sure about just how much time this is going to take so I worked on making the font subsetting functionality optional by using CMake options magic.</li>
-</ul>
-<h2>What I learned</h2>
-<ul>
-<li>I am now less likely to make dangling pointer mistakes but it could still happen.</li>
-<li>Quite a lot of CMake and how to do optional features with it.</li>
-<li>Dealing with CI.</li>
-<li>And a couple more things I forgot about but I did actually learn from them.</li>
-</ul>
-<h2>Conclusion</h2>
-<p>I think I did like below-okayish amount of work done but I am glad I actually learnt a lot of useful and important things.<br>
-<br>
-I would like to thank my mentor Albert Astals Cid, and the Poppler community for helping me.
-I would also like to thank KDE board members for approving my reimbursement requests.<br>
-<br>
-And finally, thank you for reading my blog so far :)</p>
-<p>Until next time!</p>
+    <main>
+        <h1>Week 2 + Week 3: Dangling pointer bugs, silly mistakes and a lot of CMake</h1>
+        <i>22 June, 2026</i>
+        <p>Hey wassup guys! Welcome to yet another blog made by me!</p>
+        <p>I've been busy for a while due to exam stress and my passport situation.<br>
+            But I am glad to share that I finally got the passport yesterday! This brings me one step closer to making
+            it to <strong>Akademy 2026</strong> in Graz, Austria.<br>
+            <br>
+            Now I just need to get my flight and hotel bookings done, get some required documents signed from my
+            university, get a VISA or a forex card and then finally apply for the Austrian Schengen VISA.<br>
+            <br>
+            Anyways, this blog is supposed to be about sharing learnings / progress made in week 2 and 3 of my GSoC
+            journey so let's go!
+            <br>
+        </p>
+        <p>If I recall correctly, I did the following in the past 2 weeks:</p>
+        <h3>Work on some CI issues in the android image and the windows MinGW image.</h3>
+        <ul>
+            <li>I had to build harfbuzz from scratch for the android image because it simply didn't have it by default.
+            </li>
+            <li>For the windows image, I actually found a bug in harfbuzz which made the windows build fail. I filed an
+                issue and they fixed it very quickly by using AI https://github.com/harfbuzz/harfbuzz/issues/6026. I
+                don't really like it myself that harfbuzz is heavily using AI in its development but I think I can't
+                really do much about it. Perhaps this is a topic worth covering in another blog?</li>
+        </ul>
+        <h3>Destroying resources after we have no use for them.</h3>
+        <ul>
+            <li>I was leaking some memory by using harfbuzz to generate subset fonts but was never really calling the
+                destroy functions required to free that memory.</li>
+        </ul>
+        <h3>Fix a dangling pointer bug that caused invalid fonts on subsetting.</h3>
+        <ul>
+            <li>I unknowingly made a serious <i>dangling pointer</i> or <i>use after free</i> bug when I was working on
+                destroying harfbuzz resources after I had used them. The gist here was that I used a class called
+                <code>MemStream</code> but didn't realize that it actually had a read-only view on my subset font data,
+                let's say <code>const char* fontData</code>. I called harfbuzz destroy function after constructing this
+                stream and it freed the <code>fontData</code> and then when the time came for writing to the file, the
+                <code>fontData</code> pointer inside the stream was dangling and corrupted data got written.</li>
+        </ul>
+        <h3>Making font subsetting an optional feature</h3>
+        <ul>
+            <li>I reported the harfbuzz issue and the patch MR got merged so does that mean the windows CI would also
+                get fixed immediately? Not quite, the harfbuzz people would first need to <i>release a release</i> and
+                then it needs to be updated in the package repository to finally get the patch working. We aren't sure
+                about just how much time this is going to take so I worked on making the font subsetting functionality
+                optional by using CMake options magic.</li>
+        </ul>
+        <h2>What I learned</h2>
+        <ul>
+            <li>I am now less likely to make dangling pointer mistakes but it could still happen.</li>
+            <li>Quite a lot of CMake and how to do optional features with it.</li>
+            <li>Dealing with CI.</li>
+            <li>And a couple more things I forgot about but I did actually learn from them.</li>
+        </ul>
+        <h2>Conclusion</h2>
+        <p>I think I did like below-okayish amount of work done but I am glad I actually learnt a lot of useful and
+            important things.<br>
+            <br>
+            I would like to thank my mentor Albert Astals Cid, and the Poppler community for helping me.
+            I would also like to thank KDE board members for approving my reimbursement requests.<br>
+            <br>
+            And finally, thank you for reading my blog so far :)
+        </p>
+        <p>Until next time!</p>
 
-	</main>
+    </main>
 </body>
 
 </html>
