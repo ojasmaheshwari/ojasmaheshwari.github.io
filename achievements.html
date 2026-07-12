@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Ojas Maheshwari's blog site</title>
+    <link rel="stylesheet" href="achievements.css">
+    <script defer src="/mode_control.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li><a href="/achievements.html">Achievements</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <p>This is an archive of my certificates and achievements so far, mostly for the sake of verification by HR
+            managers.
+        </p>
+        <div id="verification">
+            <input type="checkbox" name="checkbox-agree-hr" id="checkbox-agree-hr">
+            <label for="checkbox-agree-hr">By clicking, I confirm that I am a HR manager, recruiter or a person of
+                similar
+                category
+                trying to infer my technical acumen through the below resources.</label>
+            <br>
+            <button type="submit" value="Submit" id="btn-submit">Submit</button>
+            <br>
+        </div>
+
+        <div id="box-main-content" style="display: none;">
+            <ol>
+                <li>
+                    <h2>Google Summer of Code 2026</h2>
+                    <p>
+                        I got selected for Open Source contributions to <a href="https://kde.org">The KDE Community</a>
+                        under the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> (GSoC)
+                        program in 2026.
+                        <br>
+                        This is my project. <a
+                            href="https://summerofcode.withgoogle.com/programs/2026/projects/kuNn3t90">See</a>
+                    </p>
+                    <p>
+                        I also got this certificate and medal from my college after getting selected into GSoC.
+                        <br>
+                        <img src="/assets/gsoc_cert_image.jpeg" alt="GSoC certificate image" width="600" height="400">
+                        <img src="/assets/gsoc_photo.jpeg" alt="Picture holding the certificate" width="600"
+                            height="400">
+                    </p>
+                </li>
+
+                <li>
+                    <h2>Dean's list for academic year 2024-2025</h2>
+                    <p>
+                        I made it into Dean's list after being in the top 10 percentile of students in the academic year
+                        2024-2025.
+                        <br>
+                        I got a CGR (Cumulative Grading Resource) of around 9.6 that year and placed <b>3rd</b> CGR wise
+                        in the whole batch.
+                        <br>
+                        I also got a full score (10 CGR) in the 3rd term of this year.
+                        <br>
+                        <img src="/assets/dean_list_award_image.jpeg" alt="Dean's list award image" width="600"
+                            height="400">
+                    </p>
+                </li>
+
+                <li>
+                    <h2>2nd Place at CryptNite CTF at Manipal Academy of Higher Education, Bengaluru</h2>
+                    <p>
+                        I, alongside my CTF team <a href="https://blackarc.in/">BlackArc</a>, secured 2nd position at
+                        the CryptNite CTF event.
+                        <br>
+                        Our team got 25,000 INR for placing 2nd.
+                        <br>
+                        <img src="/assets/cryptonite_cert_img.jpg" alt="CryptNite certificate" width="600" height="400">
+                    </p>
+                </li>
+
+                <li>
+                    <h2>1000$ Bounty for High Severity bug in Playtika Corporation</h2>
+                    <p>
+                        I did a little bit of bug bounty on HackerOne in the summer of 2025.
+                        <br>
+                        I managed to find a high severity bug (7.7 CVSS score) in Playtika Corporation and got a bounty
+                        of 1000$ for it.
+                        <br>
+                        The bug was about a broken access control in a chat panel which allowed me to act as an
+                        administrator. I cannot go into more detail as it is strictly confidential.
+                        <br>
+                        You can see the proof on my HackerOne <a href="https://hackerone.com/the_epicman">profile</a>.
+                        <br>
+                        <img src="/assets/playtika_bb_ss.png" alt="Playtika vulnerability triage screenshot"
+                            width="1200" height="400">
+                    </p>
+                </li>
+
+                <li>
+                    <h2>Consolation Prize at CryoVault CTF at PES Bengaluru</h2>
+                    <p>
+                        Me and my CTF team got 11th place at this event and got 5000 INR.
+                        <br>
+                        <img src="/assets/cryovault_ctf_cert_img.jpeg" alt="Cryovault certificate" width="600"
+                            height="400">
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <script defer>
+        const boxAchievements = document.querySelector("#box-main-content");
+        const checkbox = document.querySelector("#checkbox-agree-hr");
+        const btnSubmit = document.querySelector("#btn-submit");
+
+        btnSubmit.addEventListener("click", (e) => {
+            if (checkbox.checked) {
+                boxAchievements.style.display = "block";
+                verification.style.display = "none";
+            } else {
+                boxAchievements.style.display = "none";
+            }
+        });
+
+    </script>
+</body>
+
+</html>
