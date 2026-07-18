@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This blog is about the progress made in week 6 and week 7 of my GSoC contribution journey.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Week 6 + Week 7: Fixing bugs & writing tests</title>
+    <script defer src="/mode_control.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Week 6 + Week 7: Fixing bugs & writing tests</h1>
+        <i>18 July, 2026</i>
+        <br>
+        <br>
+        <img src="/assets/67meme.gif" width="300" height="300">
+        <p>I spent the last 2 weeks mostly on fixing the bugs that were breaking font subsetting for annotations.</p>
+        <p>One such bug was about deleting the original font which we talked about in the last blog.<br>
+            And there were some more edge-cases and type bugs.</p>
+        <p>For eg: An object could be a ref but I directly do <code>obj-&gt;getStream()</code> instead of
+            <code>obj.fetch(xref).getStream()</code> which crashed the code.
+        </p>
+        <p>I spent 3-4 days on writing some tests for the font subsetting. I just test 2 things for now.</p>
+        <ol>
+            <li>
+                <p><strong>Single annotation test</strong>: Here we test if subsetting behaves well for a single
+                    annotation. We load a file, add an annotation, save it, re-open it, and check if the annotation is
+                    using a properly subsetted font which has glyphs only for the characters we added.</p>
+            </li>
+            <li>
+                <p><strong>Linked annotation test</strong>: We try to check if subsetting for a particular annotation
+                    leaves all the other annotations intact. So, we load a PDF file which has 2 annotations that use the
+                    same font, modify the 1st annotation, save and re-open, check if the subsetting works well for the
+                    1st annotation, and check if the font binary data for the 2nd annotation is intact.</p>
+            </li>
+        </ol>
+        <p>These tests required approximately 400 lines of code which is slightly surprising. This is almost the same
+            amount of code as the subsetting logic in <code>FontSubsetter.cc</code></p>
+        <p>I also used core poppler code for these tests and not an API like poppler-qt5 or poppler-qt6 because I needed
+            a lot more control to test these things.</p>
+        <p>I also switched from Vim + terminal coding workflow to QtCreator. This was basically because I am not very
+            good at GDB right now and wanted a visual debugger to make work easier.
+            Switching to CLion just for it's debugger felt weird.</p>
+        <p>So I started using QtCreator and it feels okayish right now. I use it with it's <code>FakeVim</code> plugin.
+        </p>
+        <p>Now, I need to work on:</p>
+        <ol>
+            <li>
+                <p>The extra font bug in poppler: Basically, when poppler tries adding fonts for a text, it seems to be
+                    including an extra wasteful font such as Cantarell in my case. I need to investigate why this
+                    happens.</p>
+            </li>
+            <li>
+                <p>Make our own splitTextByFont: Right now, I just save the font-string mappings when the AP stream is
+                    generated in an annotation. This ensures consistency between what is being written to the AP stream
+                    and what is visible to the subsetter.<br>
+                    However, this is not very good both performance-wise and code-wise. We store the mappings for
+                    annotations that we might never subset. And it requires change in the internal code.<br>
+                    Therefore, I have to create my own <code>splitTextByFont</code> function inside my
+                    <code>FontSubsetter</code> class which takes the font and returns the appropriate font-string
+                    map.<br>
+                    We need to be careful that we don't cause inconsistencies between what's visible to the subsetter
+                    and what actually gets added to the AP stream because that might cause rendering issues.
+                </p>
+            </li>
+            <li>
+                <p>Fixing more bugs: Because bugs never end in moving software, do they?</p>
+            </li>
+        </ol>
+        <p>Thanks for reading!
+            Have a great day ☺️</p>
+
+    </main>
+
+    <hr>
+    <div id="disqus_thread"></div>
+    <script>
+        setTimeout(() => {
+            var disqus_config = function () {
+                this.page.url = "https://ojasmaheshwari.github.io/b/2026/week-6-week-7-fixing-bugs-writing-tests";
+                this.page.identifier = "week-6-week-7-fixing-bugs-writing-tests";
+            };
+
+            (function () {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://ojasmaheshwari.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }, 500);
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+</body>
+
+</html>

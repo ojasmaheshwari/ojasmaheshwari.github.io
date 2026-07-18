@@ -3,7 +3,7 @@
 <title>Ojas Maheshwari&apos;s Blog Site</title>
 <link>https://ojasmaheshwari.github.io</link>
 <description>&lt;p&gt;Hi, I am Ojas Maheshwari&lt;br&gt;I am a C++ programmer and currently a college student.&lt;/p&gt;&lt;p&gt;I am a GSoC contributor at KDE right now.&lt;br&gt;I shall document my learnings and my journey through this blog feed.&lt;br&gt;I might also occasionally add some tech articles about other things when I feel like it.&lt;/p&gt;&lt;p&gt;You can reach out to me at workonlyojas@gmail.com if you feel like it.&lt;/p&gt;&lt;p&gt;Thanks for reading :D&lt;/p&gt;</description>
-<lastBuildDate>Mon, 06 Jul 2026 18:46:16 +0000</lastBuildDate>
+<lastBuildDate>Sat, 18 Jul 2026 04:01:05 +0000</lastBuildDate>
 <item>
 <title>Introductory Blog</title>
 <link>https://ojasmaheshwari.github.io/b/2026/introductory-blog</link>
@@ -172,6 +172,51 @@ https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220</p>
 <author>Ojas Maheshwari</author>
 <guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-4-week-5-gsoc-update-almost-had-a-heart-attack</guid>
 <pubDate>Mon, 06 Jul 2026 18:46:16 +0000</pubDate>
+</item>
+<item>
+<title>Week 6 + Week 7: Fixing bugs &amp; writing tests</title>
+<link>https://ojasmaheshwari.github.io/b/2026/week-6-week-7-fixing-bugs-writing-tests</link>
+<description>This blog is about the progress made in week 6 and week 7 of my GSoC contribution journey.</description>
+<content:encoded><![CDATA[<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FYpGMeJIoKrwAAAAC%2F67.gif&f=1&nofb=1&ipt=1612c6ac7c978d6fba5cbf4fb458a1b566f10a3cef70f0af8ec327abd5ecaf6b" width="300" height="300">
+<p>I spent the last 2 weeks mostly on fixing the bugs that were breaking font subsetting for annotations.</p>
+<p>One such bug was about deleting the original font which we talked about in the last blog.<br>
+And there were some more edge-cases and type bugs.</p>
+<p>For eg: An object could be a ref but I directly do <code>obj-&gt;getStream()</code> instead of <code>obj.fetch(xref).getStream()</code> which crashed the code.</p>
+<p>I spent 3-4 days on writing some tests for the font subsetting. I just test 2 things for now.</p>
+<ol>
+<li>
+<p><strong>Single annotation test</strong>: Here we test if subsetting behaves well for a single annotation. We load a file, add an annotation, save it, re-open it, and check if the annotation is using a properly subsetted font which has glyphs only for the characters we added.</p>
+</li>
+<li>
+<p><strong>Linked annotation test</strong>: We try to check if subsetting for a particular annotation leaves all the other annotations intact. So, we load a PDF file which has 2 annotations that use the same font, modify the 1st annotation, save and re-open, check if the subsetting works well for the 1st annotation, and check if the font binary data for the 2nd annotation is intact.</p>
+</li>
+</ol>
+<p>These tests required approximately 400 lines of code which is slightly surprising. This is almost the same amount of code as the subsetting logic in <code>FontSubsetter.cc</code></p>
+<p>I also used core poppler code for these tests and not an API like poppler-qt5 or poppler-qt6 because I needed a lot more control to test these things.</p>
+<p>I also switched from Vim + terminal coding workflow to QtCreator. This was basically because I am not very good at GDB right now and wanted a visual debugger to make work easier.
+Switching to CLion just for it's debugger felt weird.</p>
+<p>So I started using QtCreator and it feels okayish right now. I use it with it's <code>FakeVim</code> plugin.</p>
+<p>Now, I need to work on:</p>
+<ol>
+<li>
+<p>The extra font bug in poppler: Basically, when poppler tries adding fonts for a text, it seems to be including an extra wasteful font such as Cantarell in my case. I need to investigate why this happens.</p>
+</li>
+<li>
+<p>Make our own splitTextByFont: Right now, I just save the font-string mappings when the AP stream is generated in an annotation. This ensures consistency between what is being written to the AP stream and what is visible to the subsetter.<br>
+However, this is not very good both performance-wise and code-wise. We store the mappings for annotations that we might never subset. And it requires change in the internal code.<br>
+Therefore, I have to create my own <code>splitTextByFont</code> function inside my <code>FontSubsetter</code> class which takes the font and returns the appropriate font-string map.<br>
+We need to be careful that we don't cause inconsistencies between what's visible to the subsetter and what actually gets added to the AP stream because that might cause rendering issues.</p>
+</li>
+<li>
+<p>Fixing more bugs: Because bugs never end in moving software, do they?</p>
+</li>
+</ol>
+<p>Thanks for reading!
+Have a great day ☺️</p>
+]]></content:encoded>
+<author>Ojas Maheshwari</author>
+<guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-6-week-7-fixing-bugs-writing-tests</guid>
+<pubDate>Sat, 18 Jul 2026 04:01:05 +0000</pubDate>
 </item>
 </channel>
 </rss>
