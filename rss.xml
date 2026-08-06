@@ -3,7 +3,7 @@
 <title>Ojas Maheshwari&apos;s Blog Site</title>
 <link>https://ojasmaheshwari.github.io</link>
 <description>&lt;p&gt;Hi, I am Ojas Maheshwari&lt;br&gt;I am a C++ programmer and currently a college student.&lt;/p&gt;&lt;p&gt;I am a GSoC contributor at KDE right now.&lt;br&gt;I shall document my learnings and my journey through this blog feed.&lt;br&gt;I might also occasionally add some tech articles about other things when I feel like it.&lt;/p&gt;&lt;p&gt;You can reach out to me at workonlyojas@gmail.com if you feel like it.&lt;/p&gt;&lt;p&gt;Thanks for reading :D&lt;/p&gt;</description>
-<lastBuildDate>Sat, 18 Jul 2026 04:01:05 +0000</lastBuildDate>
+<lastBuildDate>Thu, 06 Aug 2026 11:51:52 +0000</lastBuildDate>
 <item>
 <title>Introductory Blog</title>
 <link>https://ojasmaheshwari.github.io/b/2026/introductory-blog</link>
@@ -217,6 +217,29 @@ Have a great day ☺️</p>
 <author>Ojas Maheshwari</author>
 <guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-6-week-7-fixing-bugs-writing-tests</guid>
 <pubDate>Sat, 18 Jul 2026 04:01:05 +0000</pubDate>
+</item>
+<item>
+<title>Week 8 + Week 9: Reviews and subsetting form fields</title>
+<link>https://ojasmaheshwari.github.io/b/2026/week-8-week-9-reviews-and-subsetting-form-fields</link>
+<description>This blog is about sharing whatever work I did and completed in the week 8 and week 9 of my GSoC at KDE Community.</description>
+<content:encoded><![CDATA[<p>Hi!</p>
+<p>Past 2 weeks of my GSoC work about font subsetting in Poppler involved a lot of:</p>
+<ul>
+<li>Acting on code reviews on my MR https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220</li>
+<li>Solving a lot of bugs. A lot of bugs took me 4-5 hours to troubleshoot and solve. I conquered my fear of GDB a little bit by doing this. I feel slightly better at the art of debugging now.</li>
+<li>Working on subsetting for form fields. I have it working for single font texts but not multi-font text because our support for multi-font text in form fields is complicated and it's proving difficult to test right now.</li>
+</ul>
+<p>I also made the discovery that I need to also do the following (maybe in the GSoC period or maybe outside):</p>
+<ul>
+<li>Rewriting the CID-to-GID map in a font so that we don't have to retain glyphs anymore while subsetting. Retaining glyphs can prove to be slightly expensive for some fonts, such as Droid Sans. One can only unlock font subsetting's full potential when they don't have to retain the glyph IDs anymore.</li>
+<li>Subsetting the width array in the font.</li>
+</ul>
+<p>Deciding to keep the blog short this time :)</p>
+<p>Thanks, Bye!</p>
+]]></content:encoded>
+<author>Ojas Maheshwari</author>
+<guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-8-week-9-reviews-and-subsetting-form-fields</guid>
+<pubDate>Thu, 06 Aug 2026 11:51:52 +0000</pubDate>
 </item>
 </channel>
 </rss>
