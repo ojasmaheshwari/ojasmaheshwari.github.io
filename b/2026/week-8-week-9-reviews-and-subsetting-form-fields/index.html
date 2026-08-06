@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This blog is about sharing whatever work I did and completed in the week 8 and week 9 of my GSoC at KDE Community.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Week 8 + Week 9: Reviews and subsetting form fields</title>
+    <script defer src="/mode_control.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+            <li>
+                <button id="btn-switch-mode">Dark mode</button>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Week 8 + Week 9: Reviews and subsetting form fields</h1>
+        <i>06 August, 2026</i>
+        <p>Hi!</p>
+<p>Past 2 weeks of my GSoC work about font subsetting in Poppler involved a lot of:</p>
+<ul>
+<li>Acting on code reviews on my MR https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220</li>
+<li>Solving a lot of bugs. A lot of bugs took me 4-5 hours to troubleshoot and solve. I conquered my fear of GDB a little bit by doing this. I feel slightly better at the art of debugging now.</li>
+<li>Working on subsetting for form fields. I have it working for single font texts but not multi-font text because our support for multi-font text in form fields is complicated and it's proving difficult to test right now.</li>
+</ul>
+<p>I also made the discovery that I need to also do the following (maybe in the GSoC period or maybe outside):</p>
+<ul>
+<li>Rewriting the CID-to-GID map in a font so that we don't have to retain glyphs anymore while subsetting. Retaining glyphs can prove to be slightly expensive for some fonts, such as Droid Sans. One can only unlock font subsetting's full potential when they don't have to retain the glyph IDs anymore.</li>
+<li>Subsetting the width array in the font.</li>
+</ul>
+<p>Deciding to keep the blog short this time :)</p>
+<p>Thanks, Bye!</p>
+
+    </main>
+
+    <hr>
+    <div id="disqus_thread"></div>
+    <script>
+        setTimeout(() => {
+            var disqus_config = function () {
+                this.page.url = "https://ojasmaheshwari.github.io/b/2026/week-8-week-9-reviews-and-subsetting-form-fields";
+                this.page.identifier = "week-8-week-9-reviews-and-subsetting-form-fields";
+            };
+
+            (function () {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://ojasmaheshwari.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }, 500);
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+</body>
+
+</html>
