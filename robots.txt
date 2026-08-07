@@ -1,4 +1,5 @@
 # robots.txt
+# If you are a bot, leave lmao
 
 # Block all crawlers by default
 User-agent: *
