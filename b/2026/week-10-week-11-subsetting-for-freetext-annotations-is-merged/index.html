@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Poppler now officially supports font subsetting for freetext annotations. Read what work was done in Week 10 and 11 of this GSoC project.">
+    <link rel="stylesheet" href="/blog.css">
+    <title>Week 10 + Week 11: Subsetting for freetext annotations is merged </title>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Ojas Maheshwari's Blog Site</a></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Week 10 + Week 11: Subsetting for freetext annotations is merged </h1>
+        <i>26 August, 2026</i>
+        <p>Hello fellow KDE contributors and users!</p>
+<p>The <a href="https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2220">Font Subsetting for FreeText annotations</a> merge request got merged today and this means Poppler now supports font subsetting for FreeText annotations.</p>
+<p>You can try it out by using Poppler from the <code>master</code> branch or wait for the next release. You can enable/disable it by passing <code>-DENABLE_HARFBUZZ=ON/OFF</code> when running CMake although it is enabled by default.</p>
+<p>We worked on the following in the past 2 weeks,</p>
+<ul>
+<li>Re-generating the CIDToGIDMap after subsetting.</li>
+<li>Re-generating the width array after subsetting.</li>
+<li>Working on code reviews on the MR.</li>
+<li>Regression testing and fixing bugs.</li>
+<li>Some small architectural code changes.</li>
+</ul>
+<p>What's remaining:</p>
+<ul>
+<li>The <a href="https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2316/">Font Subsetting for Form Fields</a> merge request is under review and is currently being regression tested for bugs. After this is merged, font subsetting shall be fully supported in Poppler.</li>
+</ul>
+<p>Watch out for a demo video/blog showcasing the results after doing font subsetting soon!</p>
+<p>Thank you,<br>
+Ojas</p>
+
+    </main>
+
+    <hr>
+	<div id="disqus_thread"><h1>Loading...</h1></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "https://ojasmaheshwari.github.io/b/2026/week-10-week-11-subsetting-for-freetext-annotations-is-merged";
+            this.page.identifier = "week-10-week-11-subsetting-for-freetext-annotations-is-merged";
+        };
+
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://ojasmaheshwari.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+</body>
+
+</html>

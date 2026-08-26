@@ -47,5 +47,12 @@
         "description": "This blog post is a writeup for the ZipSlip-Stream web exploitation CTF challenge at InCTF 2026 Finals event.",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/zipslip-stream-writeup-inctf-2026-ctf-finals-first-and-only-blood",
         "title": "ZipSlip-Stream WriteUp | InCTF 2026 CTF Finals | First and Only Blood"
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "26 August, 2026",
+        "description": "Poppler now officially supports font subsetting for freetext annotations. Read what work was done in Week 10 and 11 of this GSoC project.",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/week-10-week-11-subsetting-for-freetext-annotations-is-merged",
+        "title": "Week 10 + Week 11: Subsetting for freetext annotations is merged "
     }
 ]
