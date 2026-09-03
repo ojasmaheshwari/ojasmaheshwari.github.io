@@ -3,7 +3,7 @@
 <title>Ojas Maheshwari&apos;s Blog Site</title>
 <link>https://ojasmaheshwari.github.io</link>
 <description>&lt;p&gt;Hi, I am Ojas Maheshwari&lt;br&gt;I am a C++ programmer and currently a college student.&lt;/p&gt;&lt;p&gt;I am a GSoC contributor at KDE right now.&lt;br&gt;I shall document my learnings and my journey through this blog feed.&lt;br&gt;I might also occasionally add some tech articles about other things when I feel like it.&lt;/p&gt;&lt;p&gt;You can reach out to me at workonlyojas@gmail.com if you feel like it.&lt;/p&gt;&lt;p&gt;Thanks for reading :D&lt;/p&gt;</description>
-<lastBuildDate>Wed, 26 Aug 2026 09:39:55 +0000</lastBuildDate>
+<lastBuildDate>Thu, 03 Sep 2026 20:15:05 +0000</lastBuildDate>
 <item>
 <title>Introductory Blog</title>
 <link>https://ojasmaheshwari.github.io/b/2026/introductory-blog</link>
@@ -379,6 +379,31 @@ Ojas</p>
 <author>Ojas Maheshwari</author>
 <guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-10-week-11-subsetting-for-freetext-annotations-is-merged</guid>
 <pubDate>Wed, 26 Aug 2026 09:39:55 +0000</pubDate>
+</item>
+<item>
+<title>Week 12 + Week 13: Everything merged, Final GSoC blog</title>
+<link>https://ojasmaheshwari.github.io/b/2026/week-12-week-13-everything-merged-final-gsoc-blog</link>
+<description>Final blog for my GSoC 2026 journey with the KDE community</description>
+<content:encoded><![CDATA[<p>Hello everyone!</p>
+<p>My <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> project <a href="https://summerofcode.withgoogle.com/programs/2026/projects/kuNn3t90">Font Subsetting in Poppler</a> has technically been completed with <a href="https://gitlab.freedesktop.org/poppler/poppler/-/merge_requests/2316">this MR</a> getting merged.</p>
+<p>Poppler now supports <a href="https://fonts.google.com/knowledge/glossary/subsetting">Font Subsetting</a> and a new release is going to be out soon. Although the work has been rigorously tested for regressions on a lot of PDF files, I am still quite nervous :D</p>
+<p>Here's a demo video I made for font subsetting:</p>
+<video style="width: 80%;" controls>
+<source src="https://ojasmaheshwari.github.io/assets/gsoc_demo.mp4" type="video/mp4">
+</video>
+<h2>Experience</h2>
+<p>Overall, GSoC was a very enriching experience. I learnt many things I didn't know before such as PDF internals, some C++ and CMake features and sharpened my debugging skills using GDB.<br>
+But it was also a very tough experience, there were a lot of times when I thought I was going to fail.</p>
+<p>I'll also be attending Akademy in Graz so I hope to meet and learn from a lot of contributors from there!</p>
+<h2>Gratitude</h2>
+<p>I am grateful to god for providing me with such an opportunity.</p>
+<p>I would like to thank my mentor Albert Astals Cid for mentoring me throughout GSoC.<br>
+Huge thanks to the people from the Poppler community, Sune Vuorela, Lucas Baudin and everyone for helping me with my technical doubts in the Matrix IRC.<br>
+Thanks to the KDE mentorship team and the board members for managing the GSoC program!</p>
+]]></content:encoded>
+<author>Ojas Maheshwari</author>
+<guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-12-week-13-everything-merged-final-gsoc-blog</guid>
+<pubDate>Thu, 03 Sep 2026 20:15:05 +0000</pubDate>
 </item>
 </channel>
 </rss>

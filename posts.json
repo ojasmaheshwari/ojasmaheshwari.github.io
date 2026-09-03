@@ -54,5 +54,12 @@
         "description": "Poppler now officially supports font subsetting for freetext annotations. Read what work was done in Week 10 and 11 of this GSoC project.",
         "postLink": "https://ojasmaheshwari.github.io/b/2026/week-10-week-11-subsetting-for-freetext-annotations-is-merged",
         "title": "Week 10 + Week 11: Subsetting for freetext annotations is merged "
+    },
+    {
+        "author": "Ojas Maheshwari",
+        "date": "04 September, 2026",
+        "description": "Final blog for my GSoC 2026 journey with the KDE community",
+        "postLink": "https://ojasmaheshwari.github.io/b/2026/week-12-week-13-everything-merged-final-gsoc-blog",
+        "title": "Week 12 + Week 13: Everything merged, Final GSoC blog"
     }
 ]
