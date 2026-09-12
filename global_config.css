@@ -5,12 +5,15 @@
 }
 
 :root {
+    /* Light mode */
     --col-text-light: black;
-    --col-text-dark: white;
-
     --col-bg-light: white;
-    --col-bg-dark: black;
 
+    /* Dark mode */
+    --col-text-dark: white;
+    --col-bg-dark: #1a1a1a;
+
+    /* Current theme */
     --col-text: var(--col-text-light);
     --col-bg: var(--col-bg-light);
 }
