@@ -5,17 +5,27 @@
 }
 
 :root {
+    /* TODO The link colors for light and dark modes are wrong. They are black and white but should've been blue. Fix them */
+
     /* Light mode */
     --col-text-light: black;
     --col-bg-light: white;
+    --col-link-light: initial;
 
     /* Dark mode */
     --col-text-dark: white;
     --col-bg-dark: #1a1a1a;
+    --col-link-dark: initial;
+
+    /* Red Velvet */
+    --col-text-red-velvet: white;
+    --col-bg-red-velvet: #a03333;
+    --col-link-red-velvet: white;
 
     /* Current theme */
     --col-text: var(--col-text-light);
     --col-bg: var(--col-bg-light);
+    --col-link: var(--col-link-light);
 }
 
 body {
@@ -24,5 +34,9 @@ body {
     font-family: sans-serif;
     padding: 0 1rem;
     color: var(--col-text) !important;
-    background-color: var(--col-bg);
+    background-color: var(--col-bg) !important;
+}
+
+a {
+    color: var(--col-link) !important;
 }
