@@ -3,7 +3,7 @@
 <title>Ojas Maheshwari&apos;s Blog Site</title>
 <link>https://ojasmaheshwari.github.io</link>
 <description>&lt;p&gt;Hi, I am Ojas Maheshwari&lt;br&gt;I am a C++ programmer and currently a college student.&lt;/p&gt;&lt;p&gt;I am a GSoC contributor at KDE right now.&lt;br&gt;I shall document my learnings and my journey through this blog feed.&lt;br&gt;I might also occasionally add some tech articles about other things when I feel like it.&lt;/p&gt;&lt;p&gt;You can reach out to me at workonlyojas@gmail.com if you feel like it.&lt;/p&gt;&lt;p&gt;Thanks for reading :D&lt;/p&gt;</description>
-<lastBuildDate>Thu, 03 Sep 2026 20:15:05 +0000</lastBuildDate>
+<lastBuildDate>Mon, 28 Sep 2026 14:59:02 +0000</lastBuildDate>
 <item>
 <title>Introductory Blog</title>
 <link>https://ojasmaheshwari.github.io/b/2026/introductory-blog</link>
@@ -404,6 +404,32 @@ Thanks to the KDE mentorship team and the board members for managing the GSoC pr
 <author>Ojas Maheshwari</author>
 <guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/week-12-week-13-everything-merged-final-gsoc-blog</guid>
 <pubDate>Thu, 03 Sep 2026 20:15:05 +0000</pubDate>
+</item>
+<item>
+<title>Akademy 2026 - My Experience</title>
+<link>https://ojasmaheshwari.github.io/b/2026/akademy-2026-my-experience</link>
+<description>Everything I experienced attending KDE&apos;s annual conference &quot;Akademy&quot; 2026 for the first time</description>
+<content:encoded><![CDATA[<p>Right after my GSoC tenure ended, I took off to Austria for attending Akademy. This was my first time outside my country and also my first birthday in another country!</p>
+<h1>Meeting New People</h1>
+<p>I met Albert Astals Cid and Sune Vuorela who mentored and helped me during my GSoC tenure on Poppler and Okular.</p>
+<img src="https://ojasmaheshwari.github.io/assets/akademy_pictures/1.jpg" height=600>
+<p>I also got to meet Christoper Cullman who had merged my first contributions into KDE to the Kate editor.</p>
+<h1>Attending talks and BoFs</h1>
+<p>I attended some talks that I could mostly understand. For example, &quot;Are we really going to use the same Desktop UX forever?&quot; by Scott Jensen</p>
+<img src="https://ojasmaheshwari.github.io/assets/akademy_pictures/2.jpg" height=600>
+<p>Some talks of which I knew 50-60% of what's going on,</p>
+<img src="https://ojasmaheshwari.github.io/assets/akademy_pictures/3.jpg" height=600>
+<p>And then some talks, I had no idea about what's happening lol (but they sounded interesting anyways)</p>
+<img src="https://ojasmaheshwari.github.io/assets/akademy_pictures/4.jpg" height=600>
+<p>I also attended some BoFs like i18n, NFC (which sounded interesting), and one BoF which was about organizing Akademy. The &quot;organizing Akademy&quot; BoF was especially helpful because Bhushan Shah talked with me and other fellow contributors about doing a cki (conf kde india) so I learned some things there.</p>
+<h1>Chocolate factory experience</h1>
+<p>When they said in the movie that there are roughly 300 varieties of chocolates we can try, I thought I could try all of them. But I couldn't eat anymore than 30 -_-</p>
+<h1>Closing Remarks</h1>
+<p>It was a good event and I enjoyed my time there. Thanks KDE for making it happen.</p>
+]]></content:encoded>
+<author>Ojas Maheshwari</author>
+<guid isPermaLink="true">https://ojasmaheshwari.github.io/b/2026/akademy-2026-my-experience</guid>
+<pubDate>Mon, 28 Sep 2026 14:59:02 +0000</pubDate>
 </item>
 </channel>
 </rss>
